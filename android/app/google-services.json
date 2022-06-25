@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "842907145682",
+    "project_id": "mullim-1e586",
+    "storage_bucket": "mullim-1e586.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842907145682:android:8a51ba199070b35afa640b",
+        "android_client_info": {
+          "package_name": "com.example.mullim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842907145682-bnelae9kti411ai7ootvojeboc1kkdku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mullim",
+            "certificate_hash": "e8da02c6dd21e9d18556088ec92ee72e067fba83"
+          }
+        },
+        {
+          "client_id": "842907145682-8a1e2u39bqebdu0dgimm46r296atgt6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClXSB_1zs0fnb9AvZ9zTfXIzfoLlcWt1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842907145682-8a1e2u39bqebdu0dgimm46r296atgt6p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
