@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       //   ),
       //   visualDensity: VisualDensity.adaptivePlatformDensity,
       // ),
-      home: LoadingPage(),
+      home: HomePage(),
     );
   }
 }
