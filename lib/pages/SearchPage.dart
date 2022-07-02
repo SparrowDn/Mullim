@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Mysearch extends SearchDelegate {
+
+  List<String> searchResults =   ['book', 'shoe', 'laptop', 'others', 'maybe'];
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
@@ -31,30 +34,39 @@ class Mysearch extends SearchDelegate {
   buildResults(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('selectedResult'),
+        child: Text(query),
       ),
     );
     throw UnimplementedError();
   }
 
   @override
-  buildSuggestions(BuildContext context) {
-    List<String> Suggestions = [
-      'Brazil'
-      'China'
-      'USA'
-      'Russia'
-      'Korea'
-    ];
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = searchResults.where((searchResult) {
+      final result = searchResult.toLowerCase();
+      final input = query.toLowerCase();
 
-    return ListView.builder(itemCount: Suggestions.length,
-      itemBuilder: (context, index),) {
-      final suggestion = Suggestions[index];
+      return result.contains(input);
+    }).toList();
 
 
-    };
 
 
+
+    return ListView.builder(
+        itemCount: suggestions.length,
+        itemBuilder: (context, index) {
+          final suggestion = suggestions[index];
+
+          return ListTile(
+            title: Text(suggestion),
+            onTap: () {
+              query = suggestion;
+
+              showResults(context);
+            },
+          );
+        });
     throw UnimplementedError();
   }
 }

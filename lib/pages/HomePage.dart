@@ -32,8 +32,104 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _bodywidget() {
+    return DefaultTabController(
+        length: 3,
+        child: CustomScrollView(
+          slivers: [
+
+            // 상단의 앱바 제목표시
+
+            // const SliverAppBar(
+            //   title: Text(
+            //     "음뭐로할까",
+            //     style: TextStyle(color: Colors.black),
+            //   ),
+            //   pinned: false,
+            //   backgroundColor: Colors.white,
+            // ),
+            const SliverPersistentHeader(delegate: TabBarDelegate()),
+
+            //탭 내부의 내용 표시하는 탭
+            SliverFillRemaining(
+              hasScrollBody: true,
+              child: TabBarView(children: [
+                Container(
+                  color: Colors.amber,
+                ),
+                Container(
+                  color: Colors.black,
+                ),
+                Container(
+                  color: Colors.orange,
+                ),
+              ]),
+            )
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: _appbarwidget());
+    return Scaffold(appBar: _appbarwidget(),
+    body: _bodywidget(),);
+  }
+}
+
+
+//탭바 상단의 탭 항목, 이름 선택시 색상
+class TabBarDelegate extends SliverPersistentHeaderDelegate {
+  const TabBarDelegate();
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      child: TabBar(
+        tabs: [
+          Tab(
+            child: Container(
+              child: Text("홈", style: TextStyle(color: Colors.black),),
+              color: Colors.white,
+            ),
+          ),
+          Tab(
+            child: Container(
+              child: Text("페이지", style: TextStyle(color: Colors.black),),
+              color: Colors.white,
+            ),
+          ),
+          Tab(
+            child: Container(
+              child: Text("추천", style: TextStyle(color: Colors.black),),
+              color: Colors.white,
+            ),
+          ),
+        ],
+        indicatorWeight: 2,
+        unselectedLabelColor: Colors.grey,
+        indicatorColor: Colors.black,
+        indicatorSize: TabBarIndicatorSize.tab,
+        labelColor: Colors.black,
+
+      ),
+    );
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+
+  @override
+  // TODO: implement maxExtent
+  double get maxExtent => 48;
+
+  @override
+  // TODO: implement minExtent
+  double get minExtent => 48;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+    // TODO: implement shouldRebuild
+    throw UnimplementedError();
   }
 }
