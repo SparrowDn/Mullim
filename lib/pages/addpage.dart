@@ -16,7 +16,33 @@ class _addpageState extends State<addpage> {
   //앱바위젯
   PreferredSizeWidget _appbarwidget() {
     return AppBar(
-      title: Text('hi'),
+      backgroundColor: Colors.white,
+      title: Text(
+        '글 쓰기',
+        style: TextStyle(color: Colors.black),
+      ),
+      centerTitle: true,
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.clear,
+            color: Colors.black,
+          )),
+      actions: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          alignment: Alignment.centerRight,
+          child: GestureDetector(
+            child: Text(
+              "완료",
+              style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold, fontSize: 17),
+            ),
+            onTap: (){print(Text("hi"));},
+          ),
+        )
+      ],
     );
   }
 
