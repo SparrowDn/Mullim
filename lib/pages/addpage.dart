@@ -43,6 +43,7 @@ class _addpageState extends State<addpage> {
           ),
         )
       ],
+      elevation: 1,
     );
   }
 
