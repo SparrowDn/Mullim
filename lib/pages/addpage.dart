@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'choicepage.dart';
+
 class addpage extends StatefulWidget {
   const addpage({Key? key}) : super(key: key);
 
@@ -12,6 +14,9 @@ class _addpageState extends State<addpage> {
 
   List<String> classlist = ["1", "2", "3", "4"];
   String _selectedvalue = "1";
+
+  List<String> items = ["선택하세요"];
+  String? selecteditem = "선택하세요!";
 
   //앱바위젯
   PreferredSizeWidget _appbarwidget() {
@@ -37,9 +42,14 @@ class _addpageState extends State<addpage> {
           child: GestureDetector(
             child: Text(
               "완료",
-              style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold, fontSize: 17),
+              style: TextStyle(
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17),
             ),
-            onTap: (){print(Text("hi"));},
+            onTap: () {
+              print(Text("hi"));
+            },
           ),
         )
       ],
@@ -53,8 +63,12 @@ class _addpageState extends State<addpage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 20),
+
+            //제목 입력 칸
             Container(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              //color: Colors.green,
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               child: TextFormField(
                 maxLength: 20,
                 controller: titlecontroller,
@@ -69,21 +83,50 @@ class _addpageState extends State<addpage> {
                 ),
               ),
             ),
-            SizedBox(height: 0),
+            SizedBox(height: 20),
+
+            //가격 입력 칸
             Container(
+              //color: Colors.blue,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               child: Container(
-                child: TextFormField(
-                  controller: titlecontroller,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: '희망  가격',
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black12),
+                child: Expanded(
+                  child: Container(
+                    child: TextFormField(
+                      controller: titlecontroller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: '희망 가격',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black12),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                      ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+
+            //과 선택 창
+            Container(
+              //color: Colors.blue,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+              child: Container(
+                child: Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, ))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("과를 선택하세요!", style: TextStyle(fontSize: 16),),
+                        Icon(Icons.arrow_right_sharp)
+                      ],
                     ),
                   ),
                 ),
