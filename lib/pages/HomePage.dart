@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PreferredSizeWidget _appbarwidget() {
     return AppBar(
-      title: Text("hi", style: TextStyle(color: Colors.black)),
+      title: Text("안녕하세요", style: TextStyle(color: Colors.black)),
       backgroundColor: Colors.white,
       elevation: 1,
       actions: [
@@ -74,14 +74,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => addpage()));
         },
         backgroundColor: Colors.blue,
         child: Icon(Icons.add),
-
       ),
     );
   }

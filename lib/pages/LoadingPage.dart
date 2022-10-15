@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mullim/login/SigninPage.dart';
 
@@ -17,22 +18,17 @@ class _LoadingPageState extends State<LoadingPage> {
   final _IDformKey = GlobalKey<FormState>();
   final _PWformKey = GlobalKey<FormState>();
 
-
   void _login() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-          email: namecontroller.text,
-          password: pwcontroller.text);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-    }
-    catch (e) {
+              email: namecontroller.text, password: pwcontroller.text);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    } catch (e) {
       print(e);
     }
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,26 +81,63 @@ class _LoadingPageState extends State<LoadingPage> {
                   ),
                 ),
 
+                const SizedBox(
+                  height: 30,
+                ),
+
                 //로그인하기 버튼, 클릭시 데이터검증 필요
                 Container(
-                  width: 100,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.deepPurpleAccent,
+                        minimumSize: const Size.fromHeight(45)),
                     onPressed: () {
-                      if (_IDformKey.currentState!.validate());
-                      if (_PWformKey.currentState!.validate());
+                      if (_IDformKey.currentState!.validate()) ;
+                      if (_PWformKey.currentState!.validate()) ;
                       _login();
                     },
-                    child: Text("로그인하기"),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.amber
+                    child: Text(
+                      "로그인",
+                      style: TextStyle(fontSize: 24),
                     ),
                   ),
                 ),
 
+                const SizedBox(
+                  height: 10,
+                ),
+
                 //회원가입 버튼
-                ElevatedButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SigninPage()));
-                }, child: Text('회원가입'))
+                // ElevatedButton(
+                //   style: ElevatedButton.styleFrom(
+                //       primary: Colors.black,
+                //       minimumSize: const Size.fromHeight(45)),
+                //   onPressed: () {
+                //     Navigator.push(context,
+                //         MaterialPageRoute(builder: (context) => SigninPage()));
+                //   },
+                //   child: Text(
+                //     'Register',
+                //     style: TextStyle(fontSize: 24),
+                //   ),
+                // ),
+
+                RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(text: '아직 물림의 회원이 아니신가요? ', style: TextStyle(color: Colors.black, fontSize: 15)),
+                      TextSpan(
+                          text: '회원가입',
+                          style: TextStyle(color: Colors.black, decoration: TextDecoration.underline, fontSize: 15, fontWeight: FontWeight.bold),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => SigninPage()));
+                            },
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
