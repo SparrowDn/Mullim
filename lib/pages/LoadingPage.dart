@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mullim/login/SigninPage.dart';
@@ -13,6 +14,8 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> {
+
+
   TextEditingController namecontroller = TextEditingController();
   TextEditingController pwcontroller = TextEditingController();
   final _IDformKey = GlobalKey<FormState>();

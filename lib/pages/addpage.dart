@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mullim/utils/database.dart';
 
 import 'choicepage.dart';
 
@@ -7,7 +9,11 @@ class addpage extends StatefulWidget {
 
   @override
   State<addpage> createState() => _addpageState();
+
 }
+
+
+
 
 class _addpageState extends State<addpage> {
   TextEditingController titlecontroller = TextEditingController();
@@ -17,6 +23,7 @@ class _addpageState extends State<addpage> {
 
   List<String> items = ["선택하세요"];
   String? selecteditem = "선택하세요!";
+
 
   //앱바위젯
   PreferredSizeWidget _appbarwidget() {
@@ -48,7 +55,7 @@ class _addpageState extends State<addpage> {
                   fontSize: 17),
             ),
             onTap: () {
-              print(Text("hi"));
+              print("hi");
             },
           ),
         )
@@ -84,6 +91,22 @@ class _addpageState extends State<addpage> {
               ),
             ),
             SizedBox(height: 20),
+
+
+            Container(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.deepPurpleAccent,
+                    minimumSize: const Size.fromHeight(45)),
+                onPressed: () {
+                  print("hi");
+                },
+                child: Text(
+                  "등록하기",
+                  style: TextStyle(fontSize: 24),
+                ),
+              ),
+            ),
 
             //가격 입력 칸
             Container(
