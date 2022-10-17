@@ -24,8 +24,10 @@ class _SigninPageState extends State<SigninPage> {
           .createUserWithEmailAndPassword(
               email: _IDSignincontroller.text,
               password: _PWSignincontroller.text);
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("회원가입이 완료되었습니다")));
     } on FirebaseAuthException catch (e){
-      print(e);
+      //print(e);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${e.message}")));
     }
   }
@@ -64,6 +66,7 @@ class _SigninPageState extends State<SigninPage> {
                 Form(
                   key: PWformKeySignin,
                   child: TextFormField(
+                    obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "비밀번호를 입력하세요";
@@ -78,12 +81,19 @@ class _SigninPageState extends State<SigninPage> {
                   ),
                 ),
 
+                SizedBox(
+                  height: 45,
+                ),
+
                 // 회원가입 버튼
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.deepPurpleAccent,
+                      minimumSize: const Size.fromHeight(45)),
                   onPressed: () {
                     _register();
                   },
-                  child: Text("회원가입"),
+                  child: Text("회원가입", style: TextStyle(fontSize: 15),),
                 ),
               ],
             ),
