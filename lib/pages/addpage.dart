@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mullim/utils/database.dart';
+import 'package:mullim/utils/crud.dart';
 
 import 'choicepage.dart';
 
@@ -17,12 +17,25 @@ class addpage extends StatefulWidget {
 
 class _addpageState extends State<addpage> {
   TextEditingController titlecontroller = TextEditingController();
+  TextEditingController pricecontroller = TextEditingController();
+  String dropdownvalue = '전자과';
+  var items = [
+    '전자과',
+    '연기과',
+    '무용과',
+    '자동차과',
+    '항공정비과',
+  ];
 
-  List<String> classlist = ["1", "2", "3", "4"];
-  String _selectedvalue = "1";
 
-  List<String> items = ["선택하세요"];
-  String? selecteditem = "선택하세요!";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _appbarwidget(),
+      body: _bodywidget(),
+    );
+  }
+
 
 
   //앱바위젯
@@ -42,30 +55,13 @@ class _addpageState extends State<addpage> {
             Icons.clear,
             color: Colors.black,
           )),
-      actions: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          alignment: Alignment.centerRight,
-          child: GestureDetector(
-            child: Text(
-              "완료",
-              style: TextStyle(
-                  color: Colors.orange,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17),
-            ),
-            onTap: () {
-              print("hi");
-            },
-          ),
-        )
-      ],
       elevation: 1,
     );
   }
 
   //바디
   _bodywidget() {
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -79,6 +75,11 @@ class _addpageState extends State<addpage> {
               child: TextFormField(
                 maxLength: 20,
                 controller: titlecontroller,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return '필수 항목입니다';
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: '제목',
                   enabledBorder: UnderlineInputBorder(
@@ -93,21 +94,6 @@ class _addpageState extends State<addpage> {
             SizedBox(height: 20),
 
 
-            Container(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.deepPurpleAccent,
-                    minimumSize: const Size.fromHeight(45)),
-                onPressed: () {
-                  print("hi");
-                },
-                child: Text(
-                  "등록하기",
-                  style: TextStyle(fontSize: 24),
-                ),
-              ),
-            ),
-
             //가격 입력 칸
             Container(
               //color: Colors.blue,
@@ -117,8 +103,13 @@ class _addpageState extends State<addpage> {
                 child: Expanded(
                   child: Container(
                     child: TextFormField(
-                      controller: titlecontroller,
+                      controller: pricecontroller,
                       keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return '필수 항목입니다';
+                        }
+                      },
                       decoration: InputDecoration(
                         hintText: '희망 가격',
                         enabledBorder: UnderlineInputBorder(
@@ -137,35 +128,39 @@ class _addpageState extends State<addpage> {
 
             //과 선택 창
             Container(
-              //color: Colors.blue,
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-              child: Container(
-                child: Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, ))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("과를 선택하세요!", style: TextStyle(fontSize: 16),),
-                        Icon(Icons.arrow_right_sharp)
-                      ],
-                    ),
-                  ),
-                ),
+              child:
+              DropdownButton(
+
+                hint: Text("과를 선택하세요!"),
+
+                // Initial Value
+                value: dropdownvalue,
+
+                // Down Arrow Icon
+                icon: const Icon(Icons.keyboard_arrow_down),
+
+                // Array list of items
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownvalue = newValue!;
+                  });
+                },
               ),
             ),
+
           ],
         ),
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appbarwidget(),
-      body: _bodywidget(),
-    );
-  }
+
 }
