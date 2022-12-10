@@ -181,9 +181,6 @@ class _addpageState extends State<addpage> {
             Container(
 
             ),
-
-
-
           ],
         ),
       ),
