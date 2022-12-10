@@ -72,81 +72,85 @@ class _HomePageState extends State<HomePage> {
                 hasScrollBody: true,
                 child: TabBarView(
                   children: [
-                    Expanded(
-                      child: ListView(
-                        children: products.map((product) {
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return  InkWell(
-                                onTap: () {
-                                  print('Card tapped.');
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Divider(
-                                      height: 0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                                      child: ListTile(
-                                        trailing: Icon(Icons.navigate_next),
-                                        leading: ClipRRect(
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: Colors.blue
-                                            ),
-                                            child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl: product['image'],
-                                              placeholder: (context, url) => Center(
-                                                  child: CircularProgressIndicator()
-                                              ),
-                                              errorWidget: (context, url, error) => new Icon(Icons.error),
-                                            ),
-                                          ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ListView(
+                            children: products.map((product) {
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return  InkWell(
+                                    onTap: () {
+                                      print('Card tapped.');
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Divider(
+                                          height: 0,
                                         ),
-                                        title: Text(
-                                          product['name'],
-                                          style: TextStyle(
-                                              fontSize: 14
-                                          ),
-                                        ),
-                                        subtitle: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Row(
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top: 2.0, bottom: 1),
-                                                  child: Text('\$200', style: TextStyle(
-                                                    color: Theme.of(context).colorScheme.secondary,
-                                                    fontWeight: FontWeight.w700,
-                                                  )),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                                          child: ListTile(
+                                            trailing: Icon(Icons.navigate_next),
+                                            leading: ClipRRect(
+                                              borderRadius: BorderRadius.circular(5.0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blue
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 6.0),
-                                                  child: Text('(\$400)', style: TextStyle(
-                                                      fontWeight: FontWeight.w700,
-                                                      fontStyle: FontStyle.italic,
-                                                      color: Colors.grey,
-                                                      decoration: TextDecoration.lineThrough
-                                                  )),
-                                                )
+                                                child: CachedNetworkImage(
+                                                  fit: BoxFit.cover,
+                                                  imageUrl: product['image'],
+                                                  placeholder: (context, url) => Center(
+                                                      child: CircularProgressIndicator()
+                                                  ),
+                                                  errorWidget: (context, url, error) => new Icon(Icons.error),
+                                                ),
+                                              ),
+                                            ),
+                                            title: Text(
+                                              product['name'],
+                                              style: TextStyle(
+                                                  fontSize: 14
+                                              ),
+                                            ),
+                                            subtitle: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top: 2.0, bottom: 1),
+                                                      child: Text('\$200', style: TextStyle(
+                                                        color: Theme.of(context).colorScheme.secondary,
+                                                        fontWeight: FontWeight.w700,
+                                                      )),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 6.0),
+                                                      child: Text('(\$400)', style: TextStyle(
+                                                          fontWeight: FontWeight.w700,
+                                                          fontStyle: FontStyle.italic,
+                                                          color: Colors.grey,
+                                                          decoration: TextDecoration.lineThrough
+                                                      )),
+                                                    )
+                                                  ],
+                                                ),
                                               ],
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  );
+                                },
                               );
-                            },
-                          );
-                        }).toList(),
-                      ),
+                            }).toList(),
+                          ),
+                        ),
+                      ],
                     ),
                     Container(
                       color: Colors.white,

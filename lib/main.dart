@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mullim/login/SigninPage.dart';
 import 'package:mullim/pages/LoadingPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mullim/pages/HomePage.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       //   ),
       //   visualDensity: VisualDensity.adaptivePlatformDensity,
       // ),
-      home: HomePage(),
+      home: LoadingPage(),
     );
   }
 }
